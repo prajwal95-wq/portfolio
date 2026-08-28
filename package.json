@@ -1,0 +1,10 @@
+{
+  "name": "ultra-dark-marvel-developer-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ultra-premium personal developer portfolio for Prajwal_Khadse — vanilla HTML5, CSS3, JS.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}

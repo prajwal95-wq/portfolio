@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-background">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0404" />
+  <title>Spidey Admin — Prajwal_Khadse</title>
+  <meta name="description" content="Spidey admin control panel for the Prajwal_Khadse developer portfolio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&family=Fira+Code:wght@400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .admin-wrap { min-height: 100vh; display: grid; place-items: center; padding: 100px 24px 140px; }
+    .admin-shell { width: 100%; max-width: 960px; }
+    .admin-top { display:flex; align-items:center; justify-content:space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+    .admin-brand { display:flex; align-items:center; gap:14px; }
+    .spidey-mark { width:54px; height:54px; border-radius:16px; display:grid; place-items:center; background:linear-gradient(160deg,#ff1e2d,#a30f18); box-shadow:0 0 26px rgba(255,30,45,.5); }
+    .spidey-mark svg { width:30px; height:30px; fill:#0a0404; }
+    .admin-brand h1 { font-family:var(--font-display); font-size:2rem; letter-spacing:.05em; }
+    .admin-brand p { font-family:var(--font-code); font-size:.75rem; color:var(--crimson-soft); letter-spacing:.15em; text-transform:uppercase; }
+    .admin-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+    .metric { padding:22px; text-align:left; }
+    .metric .k { font-family:var(--font-display); font-size:2.2rem; color:var(--crimson); line-height:1; }
+    .metric .l { font-size:.72rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-top:8px; }
+    .panel { padding:28px; }
+    .panel h2 { font-size:1.1rem; margin-bottom:18px; display:flex; align-items:center; gap:10px; }
+    .panel h2::before { content:""; width:10px; height:10px; border-radius:3px; background:var(--crimson); box-shadow:0 0 12px var(--crimson); }
+    .field { margin-bottom:16px; }
+    .field label { display:block; font-size:.78rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; }
+    .field input, .field textarea { width:100%; padding:13px 16px; border-radius:14px; background:rgba(255,255,255,.04); border:1px solid var(--glass-border); color:var(--white); font-family:var(--font-body); font-size:.95rem; outline:none; transition:border-color .2s ease; }
+    .field input:focus, .field textarea:focus { border-color:var(--glass-border-strong); }
+    .admin-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .log-list { list-style:none; font-family:var(--font-code); font-size:.82rem; }
+    .log-list li { padding:11px 0; border-bottom:1px solid rgba(255,30,45,.1); display:flex; justify-content:space-between; color:var(--muted); }
+    .log-list li b { color:var(--white); font-weight:500; }
+    .status-ok { color:#3ddc84; }
+    .back-link { margin-top:26px; text-align:center; }
+    @media (max-width:720px){ .admin-metrics{grid-template-columns:1fr 1fr;} .admin-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <canvas id="hero-canvas" aria-hidden="true" style="opacity:.6"></canvas>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <div class="admin-wrap">
+    <div class="admin-shell">
+      <div class="admin-top">
+        <div class="admin-brand">
+          <span class="spidey-mark">
+            <svg viewBox="0 0 24 24"><path d="M12 2c1.4 2 2.4 2.6 4 3-1 .8-1.4 1.7-1.5 3 1.6.4 2.7 1.2 3.5 2.6-1.3-.2-2.3 0-3.3.7 1 1.2 1.4 2.4 1.3 4-1-1-2-1.5-3.4-1.6.3 1.5 0 2.8-1 4-.6-1.4-1.4-2.2-2.6-2.8-1.2.6-2 1.4-2.6 2.8-1-1.2-1.3-2.5-1-4-1.4.1-2.4.6-3.4 1.6-.1-1.6.3-2.8 1.3-4-1-.7-2-.9-3.3-.7.8-1.4 1.9-2.2 3.5-2.6-.1-1.3-.5-2.2-1.5-3 1.6-.4 2.6-1 4-3z"/></svg>
+          </span>
+          <div>
+            <h1>Spidey Admin</h1>
+            <p>Portfolio Control Panel</p>
+          </div>
+        </div>
+        <span class="location-badge"><span class="dot"></span> System Online</span>
+      </div>
+
+      <div class="admin-metrics">
+        <div class="metric glass"><div class="k" data-count="1284">0</div><div class="l">Visitors</div></div>
+        <div class="metric glass"><div class="k" data-count="3">0</div><div class="l">Projects</div></div>
+        <div class="metric glass"><div class="k" data-count="42">0</div><div class="l">Messages</div></div>
+        <div class="metric glass"><div class="k" data-count="99">0</div><div class="l">Uptime %</div></div>
+      </div>
+
+      <div class="admin-grid">
+        <section class="panel glass">
+          <h2>Quick Content Editor</h2>
+          <form id="admin-form">
+            <div class="field">
+              <label for="hero-title">Hero Title</label>
+              <input id="hero-title" type="text" value="Prajwal Khadse" />
+            </div>
+            <div class="field">
+              <label for="hero-tag">Tagline</label>
+              <input id="hero-tag" type="text" value="Full Stack Developer • AI Creative Technologist" />
+            </div>
+            <div class="field">
+              <label for="hero-note">Announcement</label>
+              <textarea id="hero-note" rows="3">Available for freelance & full-time roles.</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Save Changes</button>
+            <p id="save-status" class="hand" style="text-align:center; margin-top:12px; min-height:1.4em;"></p>
+          </form>
+        </section>
+
+        <section class="panel glass">
+          <h2>Activity Log</h2>
+          <ul class="log-list">
+            <li><b>Deploy succeeded</b><span class="status-ok">● live</span></li>
+            <li><b>New message received</b><span>2m ago</span></li>
+            <li><b>Project synced — Attendance AI</b><span>1h ago</span></li>
+            <li><b>Portfolio published to Vercel</b><span>3h ago</span></li>
+            <li><b>Login — admin session</b><span>just now</span></li>
+          </ul>
+          <a class="btn btn-ghost" href="index.html" style="width:100%; justify-content:center; margin-top:20px;">← Back to Portfolio</a>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Lightweight standalone canvas ambient (reuses hero look).
+    (function () {
+      const c = document.getElementById("hero-canvas");
+      const x = c.getContext("2d");
+      let w, h;
+      const stars = Array.from({ length: 90 }, () => ({ x: Math.random(), y: Math.random(), r: Math.random() * 1.6 + .3, t: Math.random() * 6 }));
+      function size() { w = c.width = innerWidth; h = c.height = innerHeight; }
+      function draw() {
+        const g = x.createRadialGradient(w / 2, h, 0, w / 2, h, Math.max(w, h));
+        g.addColorStop(0, "rgba(40,6,10,1)"); g.addColorStop(.5, "rgba(18,6,8,1)"); g.addColorStop(1, "#0a0404");
+        x.fillStyle = g; x.fillRect(0, 0, w, h);
+        const time = performance.now() * .001;
+        for (const s of stars) { const tw = .4 + .6 * Math.sin(time + s.t); x.beginPath(); x.arc(s.x * w, s.y * h, s.r, 0, 7); x.fillStyle = `rgba(255,220,224,${.1 + tw * .3})`; x.fill(); }
+        requestAnimationFrame(draw);
+      }
+      size(); draw(); addEventListener("resize", size);
+    })();
+
+    // Count-up metrics
+    document.querySelectorAll("[data-count]").forEach((el) => {
+      const target = +el.dataset.count; let n = 0;
+      const step = Math.max(1, Math.round(target / 40));
+      const id = setInterval(() => { n += step; if (n >= target) { n = target; clearInterval(id); } el.textContent = n; }, 30);
+    });
+
+    // Save handler (front-end only demo)
+    document.getElementById("admin-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const s = document.getElementById("save-status");
+      s.textContent = "Saved locally ✓";
+      try {
+        localStorage.setItem("pk_admin", JSON.stringify({
+          title: document.getElementById("hero-title").value,
+          tag: document.getElementById("hero-tag").value,
+          note: document.getElementById("hero-note").value,
+        }));
+      } catch (_) {}
+      setTimeout(() => (s.textContent = ""), 2400);
+    });
+  </script>
+</body>
+</html>
